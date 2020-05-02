@@ -36,16 +36,11 @@ public class CalculateFee {
      * @return 费用
      */
     public static int getOneReceipt(int distance,int waiteTime) {
-        int distanceSecond = 2;
-        int distanceEight = 8;
-        if (distance <= distanceSecond) {
-            //起步价
+        if (distance <= 2) {
             return (int) Math.round(6 + 0.25 * waiteTime);
-        } else if (distance <= distanceEight) {
-            //超过2公里，不超过8公里
+        } else if (distance <= 8) {
             return (int) Math.round(4.4 + 0.8 * distance + 0.25 * waiteTime);
         } else {
-            //超过8公里
             return (int) Math.round(1.2 + 1.2 * distance + 0.25 * waiteTime);
         }
     }
