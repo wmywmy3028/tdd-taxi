@@ -7,7 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 /**
  * @author :wmy
- * @date :2020/05/01
+ * @since  :2020/05/01
+ * @date ：2020/05/02
  */
 public class FileReaderUtil {
     /**
@@ -17,7 +18,7 @@ public class FileReaderUtil {
      * @return 以行为单位读取文件 每行的记录
      * @throws Exception 异常处理
      */
-    public static List<String> readFileByLines(String fileName) throws Exception {
+    public static List<String> readFile(String fileName) throws Exception {
         BufferedReader reader = new BufferedReader(new FileReader(new File(fileName)));
         String tempString;
         List<String> stringLines = new ArrayList<>();

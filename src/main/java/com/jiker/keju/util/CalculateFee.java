@@ -2,11 +2,12 @@ package com.jiker.keju.util;
 
 import java.util.regex.Pattern;
 
-import static java.util.regex.Pattern.*;
+import static java.util.regex.Pattern.compile;
 
 /**
  * @author :wmy
- * @date :2020/05/01
+ * @since  :2020/05/01
+ * @date ：2020/05/02
  */
 public class CalculateFee {
     /**

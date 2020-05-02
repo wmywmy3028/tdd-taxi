@@ -17,7 +17,7 @@ public class FileReaderUtilTest {
      */
     @Test(expected = FileNotFoundException.class)
     public void file_name_is_null_test() throws Exception {
-        FileReaderUtil.readFileByLines("");
+        FileReaderUtil.readFile("");
     }
 
     /**
@@ -26,7 +26,7 @@ public class FileReaderUtilTest {
      */
     @Test(expected = FileNotFoundException.class)
     public void file_name_is_empty_test() throws Exception {
-        FileReaderUtil.readFileByLines("");
+        FileReaderUtil.readFile("");
     }
 
     /**
@@ -35,7 +35,7 @@ public class FileReaderUtilTest {
      */
     @Test(expected = FileNotFoundException.class)
     public void file_not_exist_test() throws Exception {
-        FileReaderUtil.readFileByLines("src/main/resources/test.txt");
+        FileReaderUtil.readFile("src/main/resources/test.txt");
     }
 
     /**
@@ -46,7 +46,7 @@ public class FileReaderUtilTest {
     public void file_exist_but_no_lines_test() throws Exception{
         //创建一个新的空文件
         file.createNewFile();
-        List<String> lines =  FileReaderUtil.readFileByLines("src/main/resources/test.txt");
+        List<String> lines =  FileReaderUtil.readFile("src/main/resources/test.txt");
         assertEquals("[]",lines.toString());
     }
 
@@ -56,7 +56,7 @@ public class FileReaderUtilTest {
      */
     @Test
     public void file_exist_and_have_lines_and_read_success_test() throws Exception {
-        List<String> lines =  FileReaderUtil.readFileByLines("src/main/resources/testData.txt");
+        List<String> lines =  FileReaderUtil.readFile("src/main/resources/testData.txt");
         assertNotNull(lines);
     }
 }

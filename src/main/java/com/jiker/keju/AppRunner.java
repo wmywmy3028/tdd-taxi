@@ -6,7 +6,8 @@ import static com.jiker.keju.util.CalculateFee.getWaiteTimeAndDistanceFee;
 
 /**
  * @author :wmy
- * @date :2020/05/01
+ * @since  :2020/05/01
+ * @date ：2020/05/02
  */
 public class AppRunner {
     public static void main(String[] args) throws Exception {
@@ -18,7 +19,7 @@ public class AppRunner {
         String testDataFile = args[0];
         //String testDataFile = "testData.txt";
         //读取文件，以行为记录单位
-        List<String> stringLines = FileReaderUtil.readFileByLines("src/main/resources/" + testDataFile);
+        List<String> stringLines = FileReaderUtil.readFile("src/main/resources/" + testDataFile);
         //获取文件中行记录计算费用拼接成的字串
         String receipt = getRecepit(stringLines);
         System.out.println(receipt);
