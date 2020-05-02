@@ -27,7 +27,7 @@ public class AppRunner {
      * @param stringLines 文件中的行记录集合
      * @return 文件记录计算出的费用拼接字串
      */
-    private static String getRecepit(List<String> stringLines) {
+    public static String getRecepit(List<String> stringLines) {
         String receipt = "";
         for (String strLine : stringLines) {
             int fee = getWaiteTimeAndDistanceFee(strLine);
