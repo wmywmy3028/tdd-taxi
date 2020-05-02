@@ -19,7 +19,6 @@ public class FileReaderUtilTest {
     public void file_name_is_null_test() throws Exception {
         FileReaderUtil.readFile("");
     }
-
     /**
      * 传入的文件名为空
      * @throws IOException 异常处理
@@ -28,7 +27,6 @@ public class FileReaderUtilTest {
     public void file_name_is_empty_test() throws Exception {
         FileReaderUtil.readFile("");
     }
-
     /**
      *解析的文件不存在
      * @throws IOException 异常处理
@@ -37,7 +35,6 @@ public class FileReaderUtilTest {
     public void file_not_exist_test() throws Exception {
         FileReaderUtil.readFile("src/main/resources/test.txt");
     }
-
     /**
      * 创建一个新的空文件
      * @throws Exception 异常处理
@@ -50,6 +47,16 @@ public class FileReaderUtilTest {
         assertEquals("[]",lines.toString());
     }
 
+    @Test
+    public void file_exist_and_read_success_test() throws Exception {
+        file.createNewFile();
+        BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(file));
+        bufferedWriter.write("2公里,等待0分钟\n4公里,等待1分钟\n10公里,等待2分钟");
+         bufferedWriter.close();
+        List<String> lines =  FileReaderUtil.readFile("src/main/resources/test.txt");
+        String s = lines.toString();
+        assertEquals("[2公里,等待0分钟, 4公里,等待1分钟, 10公里,等待2分钟]",lines.toString());
+    }
     /**
      * 被读取的文件存在，且内容不为空
      * @throws Exception 异常处理
