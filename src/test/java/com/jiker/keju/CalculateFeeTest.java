@@ -1,21 +1,10 @@
 package com.jiker.keju;
 import org.junit.Test;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import static com.jiker.keju.util.CalculateFee.getRecepit;
-import static com.jiker.keju.util.CalculateFee.getWaiteTimeAndDistanceFee;
 import static org.junit.Assert.*;
 public class CalculateFeeTest {
-    /**
-     * 行记录为null
-     */
-    @Test(expected = NullPointerException.class)
-    public void parsing_lines_is_null_test(){
-        List<String> lines =null;
-        getRecepit(lines);
-    }
     /**
      * 行记录内容为空串
      */
@@ -25,7 +14,6 @@ public class CalculateFeeTest {
         lines.add("");
         getRecepit(lines);
     }
-
     /**
      * 行记录中不包含关键的数字信息
      */
@@ -35,7 +23,6 @@ public class CalculateFeeTest {
         lines.add(" 公里；等待 分钟");
         getRecepit(lines);
     }
-
     /**
      * 行记录格式错误
      */
@@ -45,7 +32,6 @@ public class CalculateFeeTest {
         lines.add("10公里；等待0分钟");
         getRecepit(lines);
     }
-
     /**
      * 公里数解析错误
      */
@@ -73,5 +59,4 @@ public class CalculateFeeTest {
         String receipt = getRecepit(lines);
         assertEquals("收费6元\n收费10元\n收费16元\n", receipt);
     }
-
 }

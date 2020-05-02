@@ -11,12 +11,8 @@ import static java.util.regex.Pattern.compile;
  * @date ：2020/05/02
  */
 public class CalculateFee {
-
     public static int getWaiteTimeAndDistanceFee(String stringLine) {
-        //WaiteTimeAndDistanceBean bean = new WaiteTimeAndDistanceBean();
-        //将每行记录以逗号分割，前面表示记录行驶公里数的，后半部分表示等待时间的
         String[] lineInput = stringLine.split(",");
-        //将字符串中的非数字替换成空串，只留下数字，以获取行驶公里数和等待时间
         Pattern p = compile("[^\\d]");
         int distance = Integer.parseInt(p.matcher(lineInput[0]).replaceAll(""));
         int  waiteTime = Integer.parseInt(p.matcher(lineInput[1]).replaceAll(""));
