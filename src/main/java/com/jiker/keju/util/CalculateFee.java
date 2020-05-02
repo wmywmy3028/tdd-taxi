@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.regex.Pattern;
 
 import static java.util.regex.Pattern.compile;
-
-
 /**
  * 计算路程和等待费用<br>
  * @author :wmy
@@ -13,12 +11,7 @@ import static java.util.regex.Pattern.compile;
  * @date ：2020/05/02
  */
 public class CalculateFee {
-    /**
-     * 通过读取的文件行，解析对应行中的行驶公里数和等待时间
-     *
-     * @param stringLine 文件中每一行记录
-     * @return 当前行中的行驶公里数和等待时间对象
-     */
+
     public static int getWaiteTimeAndDistanceFee(String stringLine) {
         //WaiteTimeAndDistanceBean bean = new WaiteTimeAndDistanceBean();
         //将每行记录以逗号分割，前面表示记录行驶公里数的，后半部分表示等待时间的
@@ -30,12 +23,6 @@ public class CalculateFee {
         return getOneReceipt(distance,waiteTime);
     }
 
-    /**
-     * 根据行驶公里数和等待时间计算费用
-     * @param distance 行驶公里数
-     * @param waiteTime 等待时间
-     * @return 费用
-     */
     public static int getOneReceipt(int distance,int waiteTime) {
         if (distance <= 2) {
             return (int) Math.round(6 + 0.25 * waiteTime);
@@ -45,12 +32,7 @@ public class CalculateFee {
             return (int) Math.round(1.2 + 1.2 * distance + 0.25 * waiteTime);
         }
     }
-    /**
-     * 获取文件中每一行记录计算出的费用，并拼接起来
-     *
-     * @param stringLines 文件中的行记录集合
-     * @return 文件记录计算出的费用拼接字串
-     */
+
     public static String getRecepit(List<String> stringLines) {
         String receipt = "";
         for (String strLine : stringLines) {
