@@ -1,15 +1,29 @@
 package com.jiker.keju.util;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.jiker.keju.util.CalculateFee.getRecepit;
 import static com.jiker.keju.util.CalculateFee.getWaiteTimeAndDistanceFee;
 import static org.junit.Assert.*;
 public class CalculateFeeTest {
+    /**
+     * 行记录为null
+     */
+    @Test(expected = NullPointerException.class)
+    public void parsing_lines_is_null_test(){
+        List<String> lines =null;
+        getRecepit(lines);
+    }
     /**
      * 行记录内容为空串
      */
     @Test(expected = NumberFormatException.class)
     public void parsing_line_is_empty_test(){
-        getWaiteTimeAndDistanceFee("");
+        List<String> lines = new ArrayList<>();
+        lines.add("");
+        getRecepit(lines);
     }
 
     /**
@@ -17,7 +31,9 @@ public class CalculateFeeTest {
      */
     @Test(expected = NumberFormatException.class)
     public void parsing_line_not_contains_number_test(){
-        getWaiteTimeAndDistanceFee(" 公里；等待 分钟");
+        List<String> lines = new ArrayList<>();
+        lines.add(" 公里；等待 分钟");
+        getRecepit(lines);
     }
 
     /**
@@ -25,33 +41,37 @@ public class CalculateFeeTest {
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void parsing_line_format_error_test(){
-        getWaiteTimeAndDistanceFee("10公里；等待0分钟");
+        List<String> lines = new ArrayList<>();
+        lines.add("10公里；等待0分钟");
+        getRecepit(lines);
     }
 
     /**
-     * 行记录被成功解析，行记录中的行驶公里数不超过2
+     * 公里数解析错误
+     */
+    @Test(expected = NumberFormatException.class)
+    public void distince_not_number_test(){
+        List<String> lines = new ArrayList<>();
+        lines.add("十公里,等待0分钟");
+        getRecepit(lines);
+    }
+    @Test(expected = NumberFormatException.class)
+    public void waitTime_not_number_test(){
+        List<String> lines = new ArrayList<>();
+        lines.add("10公里,等待分钟");
+        getRecepit(lines);
+    }
+    /**
+     * 被解析的行超过1行,每种计费方式覆盖
      */
     @Test
-    public void parsing_line_success_and_distance_le_2_test(){
-        int receipt = getWaiteTimeAndDistanceFee("1公里,等待0分钟");
-        assertEquals(6, receipt);
+    public void more_than_one_line_test(){
+        List<String> lines = new ArrayList<>();
+        lines.add("1公里,等待0分钟");
+        lines.add("7公里,等待1分钟");
+        lines.add("12公里,等待3分钟");
+        String receipt = getRecepit(lines);
+        assertEquals("收费6元\n收费10元\n收费16元\n", receipt);
     }
 
-    /**
-     * 行记录被成功解析，行记录中的行驶公里数超过2，但是不超过8
-     */
-    @Test
-    public void distance_gt_2_le_8_test(){
-        int receipt = getWaiteTimeAndDistanceFee("7公里,等待1分钟");
-        assertEquals(10, receipt);
-    }
-
-    /**
-     * 行记录被成功解析，行记录中的行驶公里数超过8
-     */
-    @Test
-    public void distance_gt_8_test(){
-        int receipt = getWaiteTimeAndDistanceFee("12公里,等待3分钟");
-        assertEquals(16, receipt);
-    }
 }

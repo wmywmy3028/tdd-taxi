@@ -1,6 +1,5 @@
 package com.jiker.keju.util;
 
-import com.jiker.keju.AppRunner;
 import org.junit.After;
 import org.junit.Test;
 import java.io.*;
@@ -56,7 +55,6 @@ public class FileReaderUtilTest {
          bufferedWriter.close();
         List<String> lines =  FileReaderUtil.readFile("src/main/resources/test.txt");
         assertEquals("[2公里,等待0分钟, 4公里,等待1分钟, 10公里,等待2分钟]",lines.toString());
-        assertEquals("收费6元\n收费8元\n收费14元\n",new AppRunner().getRecepit(lines));
     }
     /**
      * 被读取的文件存在，且内容不为空
@@ -66,6 +64,5 @@ public class FileReaderUtilTest {
     public void file_exist_and_have_lines_and_read_success_test() throws Exception {
         List<String> lines =  FileReaderUtil.readFile("src/main/resources/testData.txt");
         assertNotNull(lines);
-        assertEquals("收费6元\n收费7元\n收费13元\n收费7元\n",new AppRunner().getRecepit(lines));
     }
 }

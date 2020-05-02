@@ -1,5 +1,6 @@
 package com.jiker.keju.util;
 
+import java.util.List;
 import java.util.regex.Pattern;
 
 import static java.util.regex.Pattern.compile;
@@ -43,5 +44,19 @@ public class CalculateFee {
         } else {
             return (int) Math.round(1.2 + 1.2 * distance + 0.25 * waiteTime);
         }
+    }
+    /**
+     * 获取文件中每一行记录计算出的费用，并拼接起来
+     *
+     * @param stringLines 文件中的行记录集合
+     * @return 文件记录计算出的费用拼接字串
+     */
+    public static String getRecepit(List<String> stringLines) {
+        String receipt = "";
+        for (String strLine : stringLines) {
+            int fee = getWaiteTimeAndDistanceFee(strLine);
+            receipt = receipt.concat("收费" + fee + "元\n");
+        }
+        return receipt;
     }
 }
