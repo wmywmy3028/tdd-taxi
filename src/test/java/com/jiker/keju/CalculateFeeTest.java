@@ -1,4 +1,4 @@
-package com.jiker.keju.util;
+package com.jiker.keju;
 import org.junit.Test;
 
 import java.util.ArrayList;

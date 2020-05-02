@@ -1,5 +1,6 @@
-package com.jiker.keju.util;
+package com.jiker.keju;
 
+import com.jiker.keju.util.FileReaderUtil;
 import org.junit.After;
 import org.junit.Test;
 import java.io.*;
