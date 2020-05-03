@@ -1,4 +1,4 @@
-package com.jiker.keju;
+package com.jiker.keju.util;
 import org.junit.Test;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +20,7 @@ public class CalculateFeeTest {
     @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void parsing_line_format_error_test(){
         List<String> lines = new ArrayList<>();
-        lines.add("10公里；等待0分钟");
+        lines.add("10公里;等待0分钟");
         getRecepit(lines);
     }
     @Test(expected = NumberFormatException.class)
@@ -39,9 +39,11 @@ public class CalculateFeeTest {
     public void more_than_one_line_test(){
         List<String> lines = new ArrayList<>();
         lines.add("1公里,等待0分钟");
+        lines.add("2公里,等待0分钟");
         lines.add("7公里,等待1分钟");
+        lines.add("8公里,等待1分钟");
         lines.add("12公里,等待3分钟");
         String receipt = getRecepit(lines);
-        assertEquals("收费6元\n收费10元\n收费16元\n", receipt);
+        assertEquals("收费6元\n收费6元\n收费10元\n收费11元\n收费16元\n", receipt);
     }
 }
