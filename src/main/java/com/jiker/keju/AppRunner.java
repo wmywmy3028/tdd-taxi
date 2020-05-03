@@ -8,7 +8,7 @@ import static com.jiker.keju.util.CalculateFee.getWaiteTimeAndDistanceFee;
 /**
  * 主类<br>
  * @author :wmy
- * @since  :2020/05/01
+ * @since  :2020/05/02
  * @date ：2020/05/02
  */
 public class AppRunner {
